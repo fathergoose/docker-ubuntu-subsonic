@@ -32,10 +32,20 @@ RUN curl http://subsonic.org/download/subsonic-${PKG_VER}-standalone.tar.gz \
   | tar zx -C ${SUBSONIC_HOME}/
 
 # Mount external volume
-VOLUME /mnt/media
+ENV SUBSONIC_MUSIC_FOLDER /mnt/media/Music
+ENV SUBSONIC_PODCAST_FOLDER /mnt/media/Podcast
+ENV SUBSONIC_PLAYLIST_FOLDER /mnt/media/Playlists
+VOLUME ${SUBSONIC_MUSIC_FOLDER}
+VOLUME ${SUBSONIC_PODCAST_FOLDER}
+VOLUME ${SUBSONIC_PLAYLIST_FOLDER}
 
 # Expose http
 EXPOSE 4040
 
 # Entry point
-ENTRYPOINT ["${SUBSONIC_HOME}/standalone/subsonic.sh"]
+ENTRYPOINT ${SUBSONIC_HOME}/standalone/subsonic.sh
+CMD [ \
+  "--default-music-folder=${SUBSONIC_MUSIC_FOLDER}", \
+  "--default-podcast-folder=${SUBSONIC_PODCAST_FOLDER}", \
+  "--default-playlist-folder=${SUBSONIC_PLAYLIST_FOLDER}" \
+]
