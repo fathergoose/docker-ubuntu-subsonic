@@ -28,7 +28,8 @@ ENV SUBSONIC_HOME /var/subsonic
 ENV PKG_VER 6.0
 
 RUN mkdir ${SUBSONIC_HOME}
-RUN curl http://subsonic.org/download/subsonic-${PKG_VER}-standalone.tar.gz | tar zx -C ${SUBSONIC_HOME}/
+RUN curl http://subsonic.org/download/subsonic-${PKG_VER}-standalone.tar.gz \
+  | tar zx -C ${SUBSONIC_HOME}/
 
 # Mount external volume
 VOLUME /mnt/media
