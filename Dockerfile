@@ -1,4 +1,4 @@
-FROM ubuntu:15.10
+FROM ubuntu:16.04
 
 # Locale
 RUN locale-gen ja_JP.UTF-8 en_US.UTF-8
