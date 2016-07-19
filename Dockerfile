@@ -31,12 +31,15 @@ RUN mkdir ${SUBSONIC_HOME}
 RUN curl http://subsonic.org/download/subsonic-${PKG_VER}-standalone.tar.gz \
   | tar zx -C ${SUBSONIC_HOME}/
 
-# Mount external volume
+# Link transcoders
 ENV SUBSONIC_TRANSCODE_FOLDER ${SUBSONIC_HOME}/transcode
+RUN mkdir -p ${SUBSONIC_TRANSCODE_FOLDER} && \
+  ln -fs /usr/bin/ffmpeg /usr/bin/lame ${SUBSONIC_TRANSCODE_FOLDER}
+
+# Mount external volume
 ENV SUBSONIC_MUSIC_FOLDER /mnt/media/Music
 ENV SUBSONIC_PODCAST_FOLDER /mnt/media/Podcast
 ENV SUBSONIC_PLAYLIST_FOLDER /mnt/media/Playlists
-VOLUME ${SUBSONIC_TRANSCODE_FOLDER}
 VOLUME ${SUBSONIC_MUSIC_FOLDER}
 VOLUME ${SUBSONIC_PODCAST_FOLDER}
 VOLUME ${SUBSONIC_PLAYLIST_FOLDER}
