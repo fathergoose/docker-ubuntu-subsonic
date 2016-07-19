@@ -4,7 +4,7 @@ FROM ubuntu:16.04
 RUN locale-gen ja_JP.UTF-8 en_US.UTF-8
 
 # Update Apt Packages
-RUN apt-get update && apt-get -qqy --force-yes upgrade
+RUN apt-get update && apt-get -qy upgrade
 
 # Add Oracle Java Repo
 RUN echo "deb http://ppa.launchpad.net/webupd8team/java/ubuntu trusty main" >> /etc/apt/sources.list.d/webupd8team-java.list \
