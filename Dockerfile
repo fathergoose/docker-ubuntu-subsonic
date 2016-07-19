@@ -48,9 +48,7 @@ VOLUME ${SUBSONIC_PLAYLIST_FOLDER}
 EXPOSE 4040
 
 # Entry point
-ENTRYPOINT ${SUBSONIC_HOME}/standalone/subsonic.sh
-CMD [ \
-  "--default-music-folder=${SUBSONIC_MUSIC_FOLDER}", \
-  "--default-podcast-folder=${SUBSONIC_PODCAST_FOLDER}", \
-  "--default-playlist-folder=${SUBSONIC_PLAYLIST_FOLDER}" \
-]
+ADD ./launch_subsonic.sh /launch_subsonic.sh
+RUN chmod +x  /launch_subsonic.sh
+
+ENTRYPOINT ["/launch_subsonic.sh"]
