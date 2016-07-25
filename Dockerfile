@@ -1,7 +1,10 @@
 FROM ubuntu:16.04
 
 # Locale
-RUN locale-gen ja_JP.UTF-8 en_US.UTF-8
+RUN locale-gen en_US.UTF-8
+ENV LANG en_US.UTF-8
+ENV LANGUAGE en_US:en
+ENV LC_ALL en_US.UTF-8
 
 # Update Apt Packages
 RUN apt-get update && apt-get -qy upgrade
