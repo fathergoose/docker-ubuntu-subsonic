@@ -51,8 +51,9 @@ VOLUME ${SUBSONIC_MUSIC_FOLDER}
 VOLUME ${SUBSONIC_PODCAST_FOLDER}
 VOLUME ${SUBSONIC_PLAYLIST_FOLDER}
 
-# Expose http
-EXPOSE 4040
+# Expose http/https
+EXPOSE ${SUBSONIC_PORT}
+EXPOSE ${SUBSONIC_HTTPS_PORT}
 
 # Entry point
 ADD ./launch_subsonic.sh /launch_subsonic.sh
